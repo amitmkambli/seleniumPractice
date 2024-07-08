@@ -21,7 +21,6 @@ public class CatalogTest extends BaseTest {
 	
 	@Test(enabled =  true)
 	public void checkElements() {
-//		WebDriver driver = threadDriver.get();
 		WebDriver driver = DriverFactory.getDriver();
 
 		CatalogPage cp = new CatalogPage(driver);
@@ -33,7 +32,6 @@ public class CatalogTest extends BaseTest {
 	
 	@Test(enabled =  true)
 	public void checkPriceItem() {
-//		WebDriver driver = threadDriver.get();
 		WebDriver driver = DriverFactory.getDriver();
 		CatalogPage cp = new CatalogPage(driver);
 		cp.clickAddToCart();
@@ -44,7 +42,6 @@ public class CatalogTest extends BaseTest {
 	
 	@Test(enabled =  true)
 	public void searchItem() {
-//		WebDriver driver = threadDriver.get();
 		WebDriver driver = DriverFactory.getDriver();
 		CatalogPage cp = new CatalogPage(driver);
 		String itemName = "Carrot";

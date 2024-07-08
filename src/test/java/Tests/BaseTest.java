@@ -14,12 +14,7 @@ import io.opentelemetry.sdk.autoconfigure.spi.internal.ConfigurableMetricReaderP
 
 public class BaseTest {
 	
-//	public static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
-	
-//	public static WebDriver getDriver() {
-//		return threadDriver.get();
-//	}
-	
+
 	public enum BrowserType{
 		chrome,
 		firefox
@@ -42,22 +37,14 @@ public class BaseTest {
 	public void Setup() {		
 		//WebDriver driver = browserSetUp("chrome");
 		WebDriver driver = browserSetUp(BrowserType.chrome);
-		//threadDriver.set(driver);
 		DriverFactory.setDriver(driver);
-		//threadDriver.get().get("https://rahulshettyacademy.com/seleniumPractise/#/");
 		DriverFactory.getDriver().get(ConfigReader.getProperty("url"));
 	}
 	
 	@AfterMethod
 	public void Teardown() {
-//		threadDriver.get().quit();
-//		threadDriver.remove();
 		DriverFactory.getDriver().quit();
-//		Object obj = DriverFactory.getDriver();
-//		DriverFactory.threadDriver.remove();
 		DriverFactory.remove();
 	}
-	
-	
 	
 }

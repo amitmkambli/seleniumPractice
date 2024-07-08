@@ -18,16 +18,5 @@ public static ThreadLocal<WebDriver> threadDriver = new ThreadLocal<>();
 	public static void remove() {
 		threadDriver.remove();
 	}
-	
-//	public static WebDriver getDriver() {
-//
-//		return dr.get();
-//
-//	}
-//
-//	public static void setWebDriver(WebDriver driver) {
-//
-//		dr.set(driver);
-//	}
 
 }

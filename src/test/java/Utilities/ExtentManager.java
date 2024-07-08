@@ -51,17 +51,17 @@ public class ExtentManager {
 	
 	public static void takeScreenshot() {
 		
-		//screenshotName = convertDate("").concat(".png");
-		screenshotName = System.getProperty("user.dir")+"\\reports\\" + convertDate("").concat(".png");		
-		
-		//File file = ((TakesScreenshot) BaseTest.getDriver()).getScreenshotAs(OutputType.FILE);
-		// if we want to use this in jenkins file will not work, so better to use OutputType.BYTES or Base64 instead of OutputType.File
-//		byte[] file = ((TakesScreenshot) BaseTest.getDriver()).getScreenshotAs(OutputType.BYTES);
+		//screenshotName = System.getProperty("user.dir")+"\\reports\\" + convertDate("").concat(".png");
+		screenshotName = convertDate("").concat(".png");
+
+		File directory = new File("reports");
+
+		//better to use OutputType.BYTES or Base64 instead of OutputType.File
 		byte[] file = ((TakesScreenshot) DriverFactory.getDriver()).getScreenshotAs(OutputType.BYTES);
 		try {
 			//FileUtils.copyFile(file, new File(screenshotName));
 			BufferedImage img = ImageIO.read(new ByteArrayInputStream(file));
-			ImageIO.write(img, "png", new File(screenshotName));
+			ImageIO.write(img, "png", new File(directory, screenshotName));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

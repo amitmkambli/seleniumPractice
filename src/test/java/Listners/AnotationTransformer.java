@@ -8,7 +8,7 @@ import org.testng.annotations.ITestAnnotation;
 
 import Utilities.Retry;
 
-//note : code is Retry.class in Utilities package, 
+//note : code is in Retry.class in Utilities package,
 //here we are passing the class name Retry.class which implements IRetryAnalyzer
 
 public class AnotationTransformer implements IAnnotationTransformer {

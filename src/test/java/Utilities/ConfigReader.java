@@ -13,10 +13,9 @@ public class ConfigReader {
 		Properties properties = new Properties();
 
 		/*
-		 * try { //FileInputStream fis = new
-		 * FileInputStream(System.getProperty("user.dir")+
-		 * "/src/test/resources/properties/config.properties"); FileInputStream fis =
-		 * new FileInputStream("properties/config.properties"); properties.load(fis); }
+		 * try { //FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"/src/test/resources/properties/config.properties"); 
+		 * FileInputStream fis = new FileInputStream("properties/config.properties"); 
+		 * properties.load(fis); }
 		 * catch (IOException e) { e.printStackTrace(); }
 		 */
 		
@@ -32,30 +31,8 @@ public class ConfigReader {
 		}
 
 		// Access properties
-		// String someProperty = properties.getProperty("url");
-		// System.out.println(someProperty);
-
+		// System.out.println(properties.getProperty("url"));
 		return properties.getProperty(propertyName);
 	}
-
-	/*
-	 * public static void main(String[] args) {
-	 * 
-	 * System.out.println(ConfigReader.getProperty("url"));
-	 * System.out.println(System.getProperty("java.class.path")); String[]
-	 * propertieStrings = System.getProperty("java.class.path").split(";"); for (int
-	 * i = 0; i < propertieStrings.length; i++) {
-	 * System.out.println(propertieStrings[i]); }
-	 * 
-	 * Properties properties = new Properties(); try (InputStream inputStream =
-	 * ConfigReader.class.getClassLoader().getResourceAsStream(
-	 * "properties/config.properties")) { if (inputStream == null) {
-	 * System.out.println("Sorry, unable to find config.properties"); return; }
-	 * properties.load(inputStream); } catch (IOException ex) {
-	 * ex.printStackTrace(); }
-	 * 
-	 * // Access properties String someProperty = properties.getProperty("url");
-	 * System.out.println(someProperty); }
-	 */
 
 }

@@ -20,11 +20,11 @@ public class OrderSummaryPage extends BasePage{
 		super(driver);
 	}
 	
-	@FindBy(how = How.XPATH, using = "//button[text()='Place Order']") WebElement placeOrder;
-	@FindBy(how = How.CSS, using = "span.totAmt") WebElement totalAmmount;
-	@FindBy(how = How.CSS, using = "span.discountPerc") WebElement totalDiscountPercent;
-	@FindBy(how = How.CSS, using = "button.promoBtn") WebElement applyPromoCode;
-	@FindBy(how = How.CSS, using = "span.promoInfo") WebElement promocodeMsg;
+	@FindBy(how = How.XPATH, using = "//button[text()='Place Order']") private WebElement placeOrder;
+	@FindBy(how = How.CSS, using = "span.totAmt") private WebElement totalAmmount;
+	@FindBy(how = How.CSS, using = "span.discountPerc") private WebElement totalDiscountPercent;
+	@FindBy(how = How.CSS, using = "button.promoBtn") private WebElement applyPromoCode;
+	@FindBy(how = How.CSS, using = "span.promoInfo") private WebElement promocodeMsg;
 	
 	
 		
@@ -33,8 +33,7 @@ public class OrderSummaryPage extends BasePage{
 		return byPlaceOrder;
 	}
 	
-	public void waitForPlaceOrder() {//By by
-		//wait.until(ExpectedConditions.visibilityOf(driver.findElement(by)));
+	public void waitForPlaceOrder() {
 		waitForCondition(driver, wait, byPlaceOrder, "visibilityOf");
 	}
 	

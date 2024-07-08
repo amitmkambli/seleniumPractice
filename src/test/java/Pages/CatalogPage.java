@@ -22,15 +22,15 @@ public class CatalogPage extends BasePage {
 		super(driver);
 	}
 	
-	@FindBy(how = How.CSS, using = "input.search-keyword") List<WebElement> searchItems;
-	@FindBy(how = How.CSS, using = "div.cart-info tr:nth-child(1) td:nth-child(3)") WebElement qtyItems;
-	@FindBy(how = How.CSS, using = "div.cart-info tr:nth-child(2) td:nth-child(3)") WebElement priceItems;
-	@FindBy(how = How.CSS, using = "div.product:nth-child(1) button") WebElement AddToCart;
-	@FindBy(how = How.XPATH, using = "//h4[contains(text(),'Brocolli')]") WebElement brocolli;
-	@FindBy(how = How.CSS, using = "div.product:nth-child(1) h4") WebElement itemName;
-	@FindBy(how = How.CSS, using = "div.product:nth-child(1) img") WebElement imgInfo;
-	@FindBy(how = How.CSS, using = "a.cart-icon") WebElement cart;
-	@FindBy(how = How.CSS, using = "div.cart-preview button") WebElement checkout;
+	@FindBy(how = How.CSS, using = "input.search-keyword") private List<WebElement> searchItems;
+	@FindBy(how = How.CSS, using = "div.cart-info tr:nth-child(1) td:nth-child(3)") private WebElement qtyItems;
+	@FindBy(how = How.CSS, using = "div.cart-info tr:nth-child(2) td:nth-child(3)") private WebElement priceItems;
+	@FindBy(how = How.CSS, using = "div.product:nth-child(1) button") private WebElement AddToCart;
+	@FindBy(how = How.XPATH, using = "//h4[contains(text(),'Brocolli')]") private WebElement brocolli;
+	@FindBy(how = How.CSS, using = "div.product:nth-child(1) h4") private WebElement itemName;
+	@FindBy(how = How.CSS, using = "div.product:nth-child(1) img") private WebElement imgInfo;
+	@FindBy(how = How.CSS, using = "a.cart-icon") private WebElement cart;
+	@FindBy(how = How.CSS, using = "div.cart-preview button") private WebElement checkout;
 	
 	
 	public boolean isSearchItemPresent() {

@@ -21,7 +21,6 @@ public class CheckoutTest extends BaseTest  {
 	
 	@Test(enabled =  true)
 	public void checkOrderSummary() {
-//		WebDriver driver = threadDriver.get();
 		WebDriver driver = DriverFactory.getDriver();
 		CatalogPage cp = new CatalogPage(driver);
 		
@@ -44,7 +43,6 @@ public class CheckoutTest extends BaseTest  {
 	
 	@Test(enabled =  true)
 	public void applyPromoCode() {
-//		WebDriver driver = threadDriver.get();
 		WebDriver driver = DriverFactory.getDriver();
 		CatalogPage cp = new CatalogPage(driver);
 
@@ -61,7 +59,8 @@ public class CheckoutTest extends BaseTest  {
 		os.waitForPlaceOrder();
 		
 		os.clickapplyPromoCode();
-		Assert.assertTrue(os.getpromocodeMsg().contains("Empty code"),"incorrect msg for empty promo code");			
+		// "Empty code" -> "Empty code1" to fail the test
+		Assert.assertTrue(os.getpromocodeMsg().contains("Empty code1"),"incorrect msg for empty promo code");
 	}
 	
 

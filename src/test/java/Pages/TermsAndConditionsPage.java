@@ -20,9 +20,9 @@ public class TermsAndConditionsPage extends BasePage{
 		super(driver);
 	}
 	
-	@FindBy(how = How.XPATH, using = "//button[text()='Proceed']") WebElement proceed;
-	@FindBy(how = How.XPATH, using = "//select") WebElement selectCountry;	
-	@FindBy(how = How.CSS, using = "input.chkAgree") WebElement tcCheckbox;	
+	@FindBy(how = How.XPATH, using = "//button[text()='Proceed']") private WebElement proceed;
+	@FindBy(how = How.XPATH, using = "//select") private WebElement selectCountry;
+	@FindBy(how = How.CSS, using = "input.chkAgree") private WebElement tcCheckbox;
 	
 	public void waitForProceedButton() {
 		waitForCondition(proceed, "visibilityOf");
