@@ -23,6 +23,8 @@ public class TermsAndConditionsPage extends BasePage{
 	@FindBy(how = How.XPATH, using = "//button[text()='Proceed']") private WebElement proceed;
 	@FindBy(how = How.XPATH, using = "//select") private WebElement selectCountry;
 	@FindBy(how = How.CSS, using = "input.chkAgree") private WebElement tcCheckbox;
+	@FindBy(how = How.CSS, using = "div.wrapperThree") private WebElement thankYouMsg;
+
 	
 	public void waitForProceedButton() {
 		waitForCondition(proceed, "visibilityOf");
@@ -41,7 +43,7 @@ public class TermsAndConditionsPage extends BasePage{
 	}
 	
 	public CatalogPage waitforHomepage() {
-		waitForCondition(tcCheckbox, "https://rahulshettyacademy.com/seleniumPractise/#/country");
+		waitForCondition(thankYouMsg, "invisibilityOf");
 		CatalogPage cp = new CatalogPage(driver);
 		return cp;
 	}

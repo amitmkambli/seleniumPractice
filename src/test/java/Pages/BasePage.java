@@ -25,7 +25,7 @@ public class BasePage {
 		this.driver=driver;
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		PageFactory.initElements(driver, this);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(9));
 		js = (JavascriptExecutor)driver;
 	}
 	
@@ -39,20 +39,18 @@ public class BasePage {
 		ExtentListeners.testReport.get().info("Typing in : "+elementName+" entered the value as : "+value);
 	}
 	
-	public void waitForCondition(WebDriver driver, WebDriverWait wait, By by, String condition) {
-		switch (condition) {
-		case ("stalenessOf") -> wait.until(ExpectedConditions.stalenessOf(driver.findElement(by)));
-		case ("visibilityOf") -> wait.until(ExpectedConditions.visibilityOf(driver.findElement(by)));		
-		}
-		ExtentListeners.testReport.get().info("Waiting for : "+condition);
-	}
-	
 	public void waitForCondition(WebElement element, String condition) {
 		switch (condition) {
 		case ("stalenessOf") -> wait.until(ExpectedConditions.stalenessOf(element));
 		case ("visibilityOf") -> wait.until(ExpectedConditions.visibilityOf(element));		
-		case ("invisibilityOf") -> wait.until(ExpectedConditions.invisibilityOf(element));		
-		case ("urlToBe") -> wait.until(ExpectedConditions.urlToBe(condition));		
+		case ("invisibilityOf") -> wait.until(ExpectedConditions.invisibilityOf(element));
+		}
+		ExtentListeners.testReport.get().info("Waiting for : "+condition);
+	}
+	
+	public void waitForCondition(String value, String condition) {
+		switch (condition) {			
+		case ("urlToBe") -> wait.until(ExpectedConditions.urlToBe(condition));
 		}
 		ExtentListeners.testReport.get().info("Waiting for : "+condition);
 	}

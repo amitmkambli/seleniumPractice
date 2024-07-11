@@ -26,15 +26,8 @@ public class OrderSummaryPage extends BasePage{
 	@FindBy(how = How.CSS, using = "button.promoBtn") private WebElement applyPromoCode;
 	@FindBy(how = How.CSS, using = "span.promoInfo") private WebElement promocodeMsg;
 	
-	
-		
-	By byPlaceOrder = By.xpath("//button[text()='Place Order']");	
-	public By byPlaceOrder() {
-		return byPlaceOrder;
-	}
-	
 	public void waitForPlaceOrder() {
-		waitForCondition(driver, wait, byPlaceOrder, "visibilityOf");
+		waitForCondition(placeOrder, "visibilityOf");
 	}
 	
 	public String getTotalAmmount() {

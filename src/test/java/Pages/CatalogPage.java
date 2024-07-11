@@ -63,7 +63,6 @@ public class CatalogPage extends BasePage {
 	}
 
 	public void waitForSearchResult() {
-		//wait.until(ExpectedConditions.invisibilityOf(brocolli));
 		waitForCondition(brocolli, "invisibilityOf");
 	}
 	
