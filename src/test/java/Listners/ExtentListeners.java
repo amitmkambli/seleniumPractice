@@ -19,6 +19,7 @@ import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.Markup;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
 
+import Tests.DriverFactory;
 import Utilities.ExtentManager;
 
 public class ExtentListeners implements ITestListener {
@@ -45,20 +46,22 @@ public class ExtentListeners implements ITestListener {
 
 	@Override
 	public void onTestFailure(ITestResult result) {
+		//log exception
 		String excepionMessage=Arrays.toString(result.getThrowable().getStackTrace());
 		testReport.get().fail("<details>" + "<summary>" + "<b>" + "<font color=" + "red>" + "Exception Occured:Click to see"
 				+ "</font>" + "</b >" + "</summary>" +excepionMessage.replaceAll(",", "<br>")+"</details>"+" \n");
 		
 		//to log console errors
-		/*
-		LogEntries entry =  driver.manage().logs().get(LogType.BROWSER);
+		LogEntries entry =  DriverFactory.getDriver().manage().logs().get(LogType.BROWSER);
 		List<LogEntry> logsList = entry.getAll();
+		String log = "";
+
+		for(LogEntry e : logsList) { log = log + e.getMessage(); }
+
+		testReport.get().fail("<details>" + "<summary>" + "<b>" + "<font color=" + "red>" + "Console Log Error:Click to see"
+				+ "</font>" + "</b >" + "</summary>" + log +"</details>"+" \n");
 		
-		for(LogEntry e : logsList) {
-			System.out.println(e.getMessage());
-		}
-		*/
-		
+		//take screenshot
 		ExtentManager.takeScreenshot();
 		testReport.get().fail("<b>" + "<font color=" + "red>" + "Screenshot of failure" + "</font>" + "</b>",
 				MediaEntityBuilder.createScreenCaptureFromPath(ExtentManager.screenshotName)
