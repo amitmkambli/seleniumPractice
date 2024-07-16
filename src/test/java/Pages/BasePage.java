@@ -72,7 +72,5 @@ public class BasePage {
 		return  !list.isEmpty();
 		
 	}
-	
-	
 
 }

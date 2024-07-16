@@ -7,10 +7,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Parameters;
-
 import Utilities.ConfigReader;
-import io.opentelemetry.sdk.autoconfigure.spi.internal.ConfigurableMetricReaderProvider;
 
 public class BaseTest {
 	
@@ -20,8 +17,8 @@ public class BaseTest {
 		firefox
 	}
 	
-	public static WebDriver browserSetUp(BrowserType browser) {
-		WebDriver driver  = switch (browser) {
+	public static WebDriver browserSetUp(String browser) {
+		WebDriver driver  = switch (BrowserType.valueOf(browser)) {
 			case firefox ->  new FirefoxDriver();
 			case chrome ->  new ChromeDriver();
 			default ->  throw new IllegalArgumentException("Invalid browser type: " + browser);
@@ -33,10 +30,8 @@ public class BaseTest {
 	}
 	
 	@BeforeMethod
-	//@Parameters("browser")
 	public void Setup() {		
-		//WebDriver driver = browserSetUp("chrome");
-		WebDriver driver = browserSetUp(BrowserType.chrome);
+		WebDriver driver = browserSetUp(System.getProperty("browser"));
 		DriverFactory.setDriver(driver);
 		DriverFactory.getDriver().get(ConfigReader.getProperty("url"));
 	}

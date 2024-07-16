@@ -60,8 +60,7 @@ public class CheckoutTest extends BaseTest  {
 		
 		os.clickapplyPromoCode();
 		// "Empty code" -> "Empty code1" to fail the test
-		Assert.assertTrue(os.getpromocodeMsg().contains("Empty code1"),"incorrect msg for empty promo code");
+		Assert.assertTrue(os.getpromocodeMsg().contains("Empty code"),"incorrect msg for empty promo code");
 	}
-	
 
 }

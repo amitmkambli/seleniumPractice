@@ -6,10 +6,8 @@
 		<!-- to retry failed tests-->
 		<listener class-name="Listners.AnotationTransformer"></listener>
 	</listeners>
-	<parameter name="browser" value="chrome"></parameter>
-  <test name="Test" thread-count="3" parallel="methods">
-	  <!-- thread-count="2" parallel="methods" -->
-	  <!-- maven command: mvn test -DthreadCount=4 , refer pom.xml-->
+	<!--<parameter name="browser" value="chrome"></parameter>-->
+  <test name="Test"><!-- thread-count="2" parallel="methods" -->
     <classes>
       <class name="Tests.CatalogTest"/>
       <class name="Tests.CheckoutTest"/>

@@ -62,9 +62,6 @@
 	    <version>5.2.5</version>
 	</dependency>
 
-
-
-
   </dependencies>
 
   <build>
@@ -87,9 +84,11 @@
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 			    <parallel>methods</parallel>
-			    <!-- maven command: mvn test -DthreadCount=4-->
+			    <!-- maven command: mvn test -DthreadCount=2 -Dbrowser=chrome-->
 			    <threadCount>${threadCount}</threadCount>
-			    <useUnlimitedThreads>false</useUnlimitedThreads>
+			    <systemPropertyVariables>
+					<browser>${browser}</browser>
+				</systemPropertyVariables>
 				</configuration>
 				
 			</plugin>
