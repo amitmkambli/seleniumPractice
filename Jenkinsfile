@@ -18,7 +18,7 @@ pipeline{
 
         stage('Push image'){
             environment{
-            	// assuming you have stored the credentials with this name
+            	// assuming credentials are stored with name 'dockerhub-creds' in Manage Jenkins -> Credentials
                 DOCKER_HUB = credentials('dockerhub-creds')
             }
             steps{
@@ -26,6 +26,7 @@ pipeline{
                 bat 'docker login -u %DOCKER_HUB_USR% -p %DOCKER_HUB_PSW%'
                 // bat 'echo %DOCKER_HUB_PSW% | docker login -u %DOCKER_HUB_USR% --password-stdin'
                 bat "docker push amitdocker369/selfw:latest"
+                // environment variable : Current Job -> Pipeline Syntax -> Global Variable Reference
                 bat "docker tag amitdocker369/selfw:latest amitdocker369/selfw:${env.BUILD_NUMBER}"
                 bat "docker push amitdocker369/selfw:${env.BUILD_NUMBER}"
             }            

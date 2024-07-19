@@ -94,11 +94,11 @@
 					</suiteXmlFiles>
 			    <parallel>methods</parallel>
 			    <!-- maven command: mvn test -DthreadCount=2 -Dbrowser=chrome-->
-			    <threadCount>2</threadCount>
+			    <threadCount>${threadCount}</threadCount>
 			    <systemPropertyVariables>
-					<browser>chrome</browser>
-					<onGrid>false</onGrid>
-					<gridHost>localhost</gridHost>
+					<browser>${browser}</browser>
+					<onGrid>${onGrid}</onGrid>
+					<gridHost>${gridHost}</gridHost>
 				</systemPropertyVariables>
 				</configuration>
 				
