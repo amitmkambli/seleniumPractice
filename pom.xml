@@ -16,6 +16,14 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
+    <!-- plugins versions -->
+    <maven.compiler.version>3.11.0</maven.compiler.version>
+    <maven.dependency.version>3.6.0</maven.dependency.version>
+    <maven.jar.version>3.3.0</maven.jar.version>
+    <maven.surefire.version>3.1.2</maven.surefire.version>
+    <maven.resources.plugin>3.3.1</maven.resources.plugin>
+    <!-- output directory -->
+    <package.directory>${project.build.directory}/docker-resources</package.directory>
   </properties>
 
   <dependencies>
@@ -65,11 +73,12 @@
   </dependencies>
 
   <build>
+	  <finalName>selenium-docker</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
+				<version>${maven.compiler.version}</version>
 				<configuration>
 					<source>17</source>
 					<target>17</target>
@@ -78,20 +87,94 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-plugin</artifactId>
-				<version>2.19.1</version>
+				<version>${maven.surefire.version}</version>
 				<configuration>
 					<suiteXmlFiles>
 						<suiteXmlFile>testng.xml</suiteXmlFile>
 					</suiteXmlFiles>
 			    <parallel>methods</parallel>
 			    <!-- maven command: mvn test -DthreadCount=2 -Dbrowser=chrome-->
-			    <threadCount>${threadCount}</threadCount>
+			    <threadCount>2</threadCount>
 			    <systemPropertyVariables>
-					<browser>${browser}</browser>
+					<browser>chrome</browser>
+					<onGrid>false</onGrid>
+					<gridHost>localhost</gridHost>
 				</systemPropertyVariables>
 				</configuration>
 				
 			</plugin>
+			
+			<!-- To copy all the dependencies to run our tests as part of "mvn package" -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven.dependency.version}</version>
+                <executions>
+                    <execution>
+                        <id>copy-dependencies</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-dependencies</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>
+                                ${package.directory}/libs
+                            </outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- To package our page objects, test classes into jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${maven.jar.version}</version>
+                <configuration>
+					<!-- create and paste main and test jar files in libs folder along with dependencies jars -->
+                    <outputDirectory>${package.directory}/libs</outputDirectory>
+                </configuration>
+                <executions>
+                    <execution>
+						<!-- by default maven will ignore test package, so we need to mention mvn to cerate jar for it-->
+                        <goals>
+                            <goal>test-jar</goal>
+                        </goals>
+                        <configuration>
+							<includes>**/*.class</includes>
+						</configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- To copy resources into the output directory -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven.resources.plugin}</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${package.directory}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/test/resources</directory>
+                                </resource>
+                                <resource>
+									<directory>.</directory>
+									<includes>
+										<include>testng.xml</include>
+									</includes>
+								</resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
 		</plugins>
 	</build>
 </project>

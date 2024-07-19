@@ -1,7 +1,6 @@
 package Utilities;
 
 import java.io.File;
-import java.io.IOException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -9,7 +8,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.apache.poi.EncryptedDocumentException;
 import org.apache.poi.ss.usermodel.DataFormatter;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -17,6 +15,8 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.testng.annotations.DataProvider;
 
 public class DataProviders {
+	
+	private static String DATA_PROVIDER = "files/TestData.xlsx";
 	
 	@DataProvider(name = "orderItems", parallel = true)
 	public Object[][] getData(){
@@ -31,11 +31,12 @@ public class DataProviders {
 	//we can return a 2 dimensions objects array or an iterator
 	//LinkedHashMap : to get ordered map
 	@DataProvider(name = "orderItemsFromExcel", parallel = true)
-	public static Iterator<LinkedHashMap<String, String>> excelReader(Method methodName) throws EncryptedDocumentException, IOException {
+	public static Iterator<LinkedHashMap<String, String>> excelReader(Method methodName) throws Exception {
 		
 		List<LinkedHashMap<String, String>> dataFromExcel = new ArrayList<>();
 		
-		Workbook workbook =   WorkbookFactory.create(new File(System.getProperty("user.dir")+ "\\src\\test\\resources\\files\\TestData.xlsx" ));
+		//Workbook workbook =   WorkbookFactory.create(new File(System.getProperty("user.dir")+ "\\src\\test\\resources\\files\\TestData.xlsx" ));
+		Workbook workbook =   WorkbookFactory.create(ResourceLoader.getResource(DATA_PROVIDER));
 		String sheetName = methodName.getName();
 		Sheet sheet = workbook.getSheet(sheetName);
 		

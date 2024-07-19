@@ -7,9 +7,16 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Properties;
 
-public class ConfigReader {
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
+import java.io.InputStream;
 
-	public static String getProperty(String propertyName) {
+public class ConfigReader {
+	
+	private static String DEFAULT_PROPERTIES = "properties/config.properties";
+
+	public static String getProperty1(String propertyName) {
 		Properties properties = new Properties();
 
 		/*
@@ -34,5 +41,15 @@ public class ConfigReader {
 		// System.out.println(properties.getProperty("url"));
 		return properties.getProperty(propertyName);
 	}
+	
+	public static String getProperty(String propertyName){
+        Properties properties = new Properties();
+        try(InputStream stream = ResourceLoader.getResource(DEFAULT_PROPERTIES)){
+            properties.load(stream);
+        }catch (Exception e){
+            System.out.println("unable to read the property file {}".concat(DEFAULT_PROPERTIES) + e);
+        }
+        return properties.getProperty(propertyName);
+    }
 
 }
