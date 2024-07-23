@@ -27,7 +27,8 @@ public class ExtentListeners implements ITestListener {
 	//static String fileName = ExtentManager.convertDate("Extent_").concat(".html");
 	static String fileName = ("Extent_Report").concat(".html");
 	
-	private static ExtentReports extent = ExtentManager.createInstance(System.getProperty("user.dir")+"\\reports\\"+fileName);
+	//private static ExtentReports extent = ExtentManager.createInstance(System.getProperty("user.dir")+"\\reports\\"+fileName);
+	private static ExtentReports extent = ExtentManager.createInstance("reports/"+fileName);
 	public static ThreadLocal<ExtentTest> testReport = new ThreadLocal<ExtentTest>();
 
 	@Override
