@@ -36,7 +36,7 @@ public class CatalogTest extends BaseTest {
 		CatalogPage cp = new CatalogPage(driver);
 		cp.clickAddToCart();
 		//changed equals("0") to equals("1") to fail the test
-		Assert.assertTrue(!cp.getqtyItems().equals("0"),"default price is 0 on adding product");
+		Assert.assertTrue(!cp.getqtyItems().equals("1"),"default price is 0 on adding product");
 		Assert.assertTrue(!cp.getpriceItems().equals(""),"default price is 0 on adding product");	
 	}
 	
